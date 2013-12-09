@@ -200,7 +200,7 @@ public:
 
 			dCollisionDist = (double)(iSweeperScale+1)/dSensorRange;
 
-			iNumInputs  = 3;//(iNumSensors * 2) + 1;
+			iNumInputs  = 5 + 1 + 1 + 1; // Five rangefinders + tracpos + speed + damage
 			iNumOutputs = 2;
 
 			return true;

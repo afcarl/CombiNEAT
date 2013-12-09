@@ -45,7 +45,7 @@ public:
 	// The main function: 
 	//     - the input variable sensors represents the current world sate
 	//     - it returns a string representing the controlling action to perform    
-	virtual string drive(string sensors, CNeuralNet* brain)=0;
+	virtual string drive(string sensors, CNeuralNet* brain, float &dmg)=0;
 
 	// Callback function called at shutdown
 	virtual void onShutdown(){};

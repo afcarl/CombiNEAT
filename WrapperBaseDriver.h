@@ -27,10 +27,10 @@ class WrapperBaseDriver : public BaseDriver
 public:
 	
 	// the drive function wiht string input and output
-	virtual string drive(string sensors, CNeuralNet* brain);
+	virtual string drive(string sensors, CNeuralNet* brain, float &dmg);
 	
 	// drive function that exploits the CarState and CarControl wrappers as input and output.
-	virtual CarControl wDrive(CarState cs, CNeuralNet* brain)=0;
+	virtual CarControl wDrive(CarState cs, CNeuralNet* brain, float &dmg)=0;
 };
 
 #endif /*WRAPPERBASEDRIVER_H_*/

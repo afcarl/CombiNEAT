@@ -16,10 +16,10 @@
 #include "WrapperBaseDriver.h"
 
 string 
-WrapperBaseDriver::drive(string sensors, CNeuralNet* brain)
+WrapperBaseDriver::drive(string sensors, CNeuralNet* brain, float &dmg)
 {
 	CarState cs(sensors);
-	CarControl cc = wDrive(cs, brain);
+	CarControl cc = wDrive(cs, brain, dmg);
 	return cc.toString();	
 }
 

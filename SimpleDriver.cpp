@@ -146,10 +146,11 @@ SimpleDriver::getAccel(CarState &cs)
 }
 
 CarControl
-SimpleDriver::wDrive(CarState cs, CNeuralNet* brain)
+SimpleDriver::wDrive(CarState cs, CNeuralNet* brain, float &dmg)
 {
 	distRaced = cs.getDistRaced();//cs.getDistFromStart();
 	damage = cs.getDamage();
+	dmg = damage;
 
 	//this will store all the inputs for the NN
 	vector<double> inputs;
@@ -162,6 +163,21 @@ SimpleDriver::wDrive(CarState cs, CNeuralNet* brain)
     // reading of sensor at -5 degree w.r.t. car axis
 	double left = cs.getTrack(7) / 200.0;
     inputs.push_back(left);
+
+	double right_side = cs.getTrack(16) / 200.0; // 60 degrees
+	inputs.push_back(right_side);
+
+	double left_side = cs.getTrack(2) / 200.0; // -60 degrees
+	inputs.push_back(left_side);
+
+	// Trackpos
+	inputs.push_back(cs.getTrackPos());
+
+	// Speed
+	inputs.push_back(cs.getSpeedX());
+
+	// Damage
+	inputs.push_back(damage);
 
 	//update the brain and get feedback
 	vector<double> output = brain->Update(inputs, CNeuralNet::active);

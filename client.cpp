@@ -291,9 +291,13 @@ int runCar(CNeuralNet* brain)
 				**************************************************/
 				if ( (++currentStep) != maxSteps)
 				{
-					string action = d.drive(string(buf), brain);
+					float dmg = 0;
+					string action = d.drive(string(buf), brain, dmg);
 					memset(buf, 0x0, UDP_MSGLEN);
 					sprintf(buf,"%s",action.c_str());
+					if (dmg > 300) {
+						break;
+					}
 				}
 				else
 					break;
